@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<h1>Welcome home</h1>
+<ul>
+    <h3>Encuestas</h3>
+    {% for a in questions %}
+    <li><a href="{% url 'polls:vote' a.id %}" >{{a.questions_text}}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
