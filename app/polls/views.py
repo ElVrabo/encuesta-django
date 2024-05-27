@@ -13,7 +13,7 @@ def home(request):
     })
 def vote(request, q_id):
     question = get_object_or_404(Question, id=q_id)
-    if request.method == 'POSt':
+    if request.method == 'POST':
      try: 
         choice = request.POST('choice')
         c = Choice.objects.get(id=choice)
