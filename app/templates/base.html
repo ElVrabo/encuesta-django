@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encuestas ! {% block title %}{% endblock %}</title>
+    
+    {% load static %}
+    <link type="text/css" href='{% static "styles.css" %}' rel="stylesheet" >
+    <title>Encuestas | {% block title %}{% endblock %}</title>
 </head>
 <body>
     <div class="container">

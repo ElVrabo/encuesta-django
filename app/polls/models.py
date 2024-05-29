@@ -4,9 +4,9 @@ from django.db import models
 
 class Question(models.Model):
     question_text = models.CharField(max_length=150)
-    pub_date = models.DateTimeField(auto_now_add=True)
+    pub_date = models.DateTimeField()
 
-    def _str_(self):
+    def __str__(self):
         return self.question_text
 
 class Choice(models.Model):
@@ -14,5 +14,5 @@ class Choice(models.Model):
     choice_text = models.CharField(max_length=100)
     votes = models.IntegerField(default=0)
 
-    def _str_(self):
-        return self.choice_text
+    def __str__(self):
+      return self.choice_text
