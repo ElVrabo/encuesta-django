@@ -3,14 +3,49 @@
 {% block title %}Resultado{% endblock %}
 
 {% block content %}
-<h1 class="title">{{ question }}</h1>
-<ul class="container-list" >
+
+{% load static %}
+<link type="text/css" href='{% static "styles.css" %}' rel="stylesheet" >
+<h1 class="title">{{ question.question_text }}</h1>
+<ul class="container-list">
     {% for c in question.choice_set.all %}
-    <li class="list-votes" >{{ c.choice_text }} = {{ c.votes }} </li>
+    <li class="list-votes">{{ c.choice_text }} = {{ c.votes }}</li>
     {% endfor %}
 </ul>
-<hr>
-<div class="container-back" >
+<div class="chart" >
+    <canvas id="resultsChart" ></canvas>
+</div>
+
+<hr class="line" >
+<div class="container-back">
     <a class="back" href="{% url 'polls:home' %}">Regresar al inicio</a>
 </div>
+
+<!-- Canvas for Chart.js -->
+
+<!-- Include Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Get the context of the canvas
+    var ctx = document.getElementById('resultsChart').getContext('2d');
+    
+    
+
+    // Data for the chart
+    var chartData = {{ data|safe }}
+
+    // Create the chart
+    var resultsChart = new Chart(ctx, {
+        type: 'pie',  // You can change the type of chart here
+        data: chartData,
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+   
+</script>
 {% endblock %}
